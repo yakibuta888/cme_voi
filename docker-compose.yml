@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  app:
+    container_name: $CONTAINER_NAME
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+      args:
+        - WORKDIR=$WORK_DIR
+        - USERNAME=$USER_NAME
+        - HOMEDIR=$HOME_DIR
+        - USERID=$USER_ID
+        - GROUPID=$GROUP_ID
+    tty: true
+    env_file:
+      - ./.env
+    volumes:
+      - .:$WORK_DIR:ro

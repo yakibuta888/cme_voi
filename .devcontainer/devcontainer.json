@@ -1,0 +1,113 @@
+{
+  "name": "cme_voi",
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.devcontainer.yml"],
+  "remoteUser": "client",
+  "workspaceFolder": "/home/client/workspace",
+  "service": "app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        },
+        "python.pythonPath": "/usr/local/bin/python",
+        "python.languageServer": "Default",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.linting.flake8Args": [
+          "--ignore=E402,E501"
+        ],
+        "python.formatting.provider": "autopep8",
+        "python.formatting.autopep8Args": [
+          "--ignore",
+          "E402,E501",
+          "--max-line-length",
+          "150"
+        ],
+        "[python]": {
+          "editor.formatOnSave": true
+        },
+        // pylance settings
+        "python.analysis.typeCheckingMode": "strict",
+        "python.analysis.stubPath": "./typings",
+        "python.analysis.autoImportCompletions": false,
+        "python.analysis.diagnosticSeverityOverrides": {
+          "reportUnusedImport": "none",
+          "reportUnusedClass": "none",
+          "reportUnusedFunction": "none",
+          "reportUnboundVariable": "error",
+          "reportMissingModuleSource": "information",
+          "reportMissingTypeStubs": "information",
+          "reportInvalidStringEscapeSequence": "information",
+          "reportTypedDictNotRequiredAccess":"warning"
+        },
+        // todo-tree settings
+        "todo-tree.general.tags": [
+          "FIXME",
+          "NOTE",
+          "TODO",
+          "CHANGED",
+          "HACK",
+          "REVIEW",
+          "WARNING"
+        ],
+        "todo-tree.highlights.defaultHighlight": {
+          "gutterIcon": true
+        },
+        "todo-tree.highlights.customHighlight": {
+          "TODO": {
+            "icon": "check-circle-fill",
+            "foreground": "#ff8800",
+            "iconColour": "#ff8800"
+          },
+          "FIXME": {
+            "icon": "flame",
+            "foreground": "#FFFF00",
+            "iconColour": "#FFFF00"
+          },
+          "NOTE": {
+            "icon": "paintbrush",
+            "foreground": "#00bfff",
+            "iconColour": "#00bfff"
+          },
+          "CHANGED": {
+            "icon": "plus-circle",
+            "foreground": "#00a01b",
+            "iconColour": "#00a01b"
+          },
+          "HACK": {
+            "icon": "issue-reopened",
+            "foreground": "#3268ff",
+            "iconColour": "#3268ff"
+          },
+          "REVIEW": {
+            "icon": "code-review",
+            "foreground": "#9dff1d",
+            "iconColour": "#9dff1d"
+          },
+          "WARNING": {
+            "icon": "alert",
+            "foreground": "#ff1d8e",
+            "iconColour": "#ff1d8e"
+          }
+        },
+        "autoDocstring.docstringFormat": "numpy",
+        "autoDocstring.startOnNewLine": true
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "Gruntfuggly.todo-tree",
+        "njpwerner.autodocstring",
+        "Asuka.insertnumbers"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "postCreateCommand": "pip install -r env/requirements.txt"
+}
